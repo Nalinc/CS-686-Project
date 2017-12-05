@@ -1,0 +1,11 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{ipsum}{2012}]{loremipsum}
+ipsum, L.
+\newblock 2012.
+\newblock Lorem ipsum dolor sit amet, consectetur adipiscing elit,.
+\newblock In {\em Lorem ipsum dolor sit amet, consectetur adipiscing elit,},
+  237--246.
+\newblock ACM.
+
+\end{thebibliography}
