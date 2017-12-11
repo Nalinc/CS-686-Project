@@ -3,46 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: final.aux
 The style file: aaai.bst
 Database file #1: ta.bib
-Warning--I didn't find a database entry for "dow2012shepherding"
-You've used 1 entry,
+You've used 21 entries,
             2568 wiz_defined-function locations,
-            581 strings with 4662 characters,
-and the built_in function-call counts, 503 in all, are:
-= -- 56
-> -- 7
-< -- 1
-+ -- 2
-- -- 2
-* -- 28
-:= -- 78
-add.period$ -- 6
-call.type$ -- 1
-change.case$ -- 5
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 25
-empty$ -- 43
-format.name$ -- 3
-if$ -- 113
-int.to.chr$ -- 1
+            683 strings with 8325 characters,
+and the built_in function-call counts, 9337 in all, are:
+= -- 994
+> -- 431
+< -- 8
++ -- 155
+- -- 148
+* -- 715
+:= -- 1497
+add.period$ -- 106
+call.type$ -- 21
+change.case$ -- 157
+chr.to.int$ -- 19
+cite$ -- 21
+duplicate$ -- 359
+empty$ -- 614
+format.name$ -- 181
+if$ -- 1940
+int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 10
-num.names$ -- 3
-pop$ -- 5
+missing$ -- 20
+newline$ -- 130
+num.names$ -- 63
+pop$ -- 156
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 179
 quote$ -- 0
-skip$ -- 22
+skip$ -- 310
 stack$ -- 0
-substring$ -- 37
-swap$ -- 11
-text.length$ -- 1
+substring$ -- 446
+swap$ -- 110
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 164
 warning$ -- 0
-while$ -- 5
-width$ -- 2
-write$ -- 18
-(There was 1 warning)
+while$ -- 69
+width$ -- 24
+write$ -- 288

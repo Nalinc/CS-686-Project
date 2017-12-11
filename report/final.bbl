@@ -1,11 +1,159 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\citeauthoryear{ipsum}{2012}]{loremipsum}
-ipsum, L.
-\newblock 2012.
-\newblock Lorem ipsum dolor sit amet, consectetur adipiscing elit,.
-\newblock In {\em Lorem ipsum dolor sit amet, consectetur adipiscing elit,},
-  237--246.
-\newblock ACM.
+\bibitem[\protect\citeauthoryear{Hochreiter and
+  Schmidhuber}{1997a}]{Hochreiter:1997:LSM:1246443.1246450}
+Hochreiter, S., and Schmidhuber, J.
+\newblock 1997a.
+\newblock Long short-term memory.
+\newblock {\em Neural Comput.} 9(8):1735--1780.
+
+\bibitem[\protect\citeauthoryear{Hochreiter and
+  Schmidhuber}{1997b}]{hochreiter1997long}
+Hochreiter, S., and Schmidhuber, J.
+\newblock 1997b.
+\newblock Long short-term memory.
+\newblock {\em Neural computation} 9(8):1735--1780.
+
+\bibitem[\protect\citeauthoryear{Kojouharov}{2016}]{chatbot:framework}
+Kojouharov, S.
+\newblock 2016.
+\newblock Ultimate guide to leveraging nlp \& machine learning for your
+  chatbot.
+\newblock Accessed: 2017-12-9.
+
+\bibitem[\protect\citeauthoryear{Le and Mikolov}{2014}]{le2014distributed}
+Le, Q., and Mikolov, T.
+\newblock 2014.
+\newblock Distributed representations of sentences and documents.
+\newblock In {\em Proceedings of the 31st International Conference on Machine
+  Learning (ICML-14)},  1188--1196.
+
+\bibitem[\protect\citeauthoryear{Li \bgroup et al\mbox.\egroup
+  }{2015}]{li2015diversity}
+Li, J.; Galley, M.; Brockett, C.; Gao, J.; and Dolan, B.
+\newblock 2015.
+\newblock A diversity-promoting objective function for neural conversation
+  models.
+\newblock {\em arXiv preprint arXiv:1510.03055}.
+
+\bibitem[\protect\citeauthoryear{Li \bgroup et al\mbox.\egroup
+  }{2016}]{li2016persona}
+Li, J.; Galley, M.; Brockett, C.; Spithourakis, G.~P.; Gao, J.; and Dolan, B.
+\newblock 2016.
+\newblock A persona-based neural conversation model.
+\newblock {\em arXiv preprint arXiv:1603.06155}.
+
+\bibitem[\protect\citeauthoryear{Liu \bgroup et al\mbox.\egroup
+  }{2016}]{liu2016not}
+Liu, C.-W.; Lowe, R.; Serban, I.~V.; Noseworthy, M.; Charlin, L.; and Pineau,
+  J.
+\newblock 2016.
+\newblock How not to evaluate your dialogue system: An empirical study of
+  unsupervised evaluation metrics for dialogue response generation.
+\newblock {\em arXiv preprint arXiv:1603.08023}.
+
+\bibitem[\protect\citeauthoryear{Lowe \bgroup et al\mbox.\egroup
+  }{2015}]{lowe2015ubuntu}
+Lowe, R.; Pow, N.; Serban, I.; and Pineau, J.
+\newblock 2015.
+\newblock The ubuntu dialogue corpus: A large dataset for research in
+  unstructured multi-turn dialogue systems.
+\newblock {\em arXiv preprint arXiv:1506.08909}.
+
+\bibitem[\protect\citeauthoryear{Mikolov \bgroup et al\mbox.\egroup
+  }{2013a}]{mikolov2013efficient}
+Mikolov, T.; Chen, K.; Corrado, G.; and Dean, J.
+\newblock 2013a.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}.
+
+\bibitem[\protect\citeauthoryear{Mikolov \bgroup et al\mbox.\egroup
+  }{2013b}]{mikolov2013distributed}
+Mikolov, T.; Sutskever, I.; Chen, K.; Corrado, G.~S.; and Dean, J.
+\newblock 2013b.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In {\em Advances in neural information processing systems},
+  3111--3119.
+
+\bibitem[\protect\citeauthoryear{Mikolov, Yih, and
+  Zweig}{2013}]{mikolov2013linguistic}
+Mikolov, T.; Yih, W.-t.; and Zweig, G.
+\newblock 2013.
+\newblock Linguistic regularities in continuous space word representations.
+\newblock In {\em hlt-Naacl}, volume~13,  746--751.
+
+\bibitem[\protect\citeauthoryear{O'keeffe, McCarthy, and
+  Carter}{2007}]{o2007corpus}
+O'keeffe, A.; McCarthy, M.; and Carter, R.
+\newblock 2007.
+\newblock {\em From corpus to classroom: Language use and language teaching}.
+\newblock Cambridge University Press.
+
+\bibitem[\protect\citeauthoryear{Pieraccini \bgroup et al\mbox.\egroup
+  }{2009}]{pieraccini2009we}
+Pieraccini, R.; Suendermann, D.; Dayanidhi, K.; and Liscombe, J.
+\newblock 2009.
+\newblock Are we there yet? research in commercial spoken dialog systems.
+\newblock In {\em Text, Speech and Dialogue},  3--13.
+\newblock Springer.
+
+\bibitem[\protect\citeauthoryear{Serban \bgroup et al\mbox.\egroup
+  }{2015}]{serban2015survey}
+Serban, I.~V.; Lowe, R.; Henderson, P.; Charlin, L.; and Pineau, J.
+\newblock 2015.
+\newblock A survey of available corpora for building data-driven dialogue
+  systems.
+\newblock {\em arXiv preprint arXiv:1512.05742}.
+
+\bibitem[\protect\citeauthoryear{Serban \bgroup et al\mbox.\egroup
+  }{2016}]{serban2016building}
+Serban, I.~V.; Sordoni, A.; Bengio, Y.; Courville, A.~C.; and Pineau, J.
+\newblock 2016.
+\newblock Building end-to-end dialogue systems using generative hierarchical
+  neural network models.
+\newblock In {\em AAAI},  3776--3784.
+
+\bibitem[\protect\citeauthoryear{Singh \bgroup et al\mbox.\egroup
+  }{2000}]{singh2000reinforcement}
+Singh, S.~P.; Kearns, M.~J.; Litman, D.~J.; and Walker, M.~A.
+\newblock 2000.
+\newblock Reinforcement learning for spoken dialogue systems.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  956--962.
+
+\bibitem[\protect\citeauthoryear{Sutskever, Vinyals, and
+  Le}{2014}]{sutskever2014sequence}
+Sutskever, I.; Vinyals, O.; and Le, Q.~V.
+\newblock 2014.
+\newblock Sequence to sequence learning with neural networks.
+\newblock In {\em Advances in neural information processing systems},
+  3104--3112.
+
+\bibitem[\protect\citeauthoryear{TechCrunch}{2016}]{microsoft:tay}
+TechCrunch.
+\newblock 2016.
+\newblock Microsoft silences its new ai bot tay, after twitter users teach it
+  racism.
+\newblock Accessed: 2017-12-9.
+
+\bibitem[\protect\citeauthoryear{Vinyals and Le}{2015}]{vinyals2015neural}
+Vinyals, O., and Le, Q.
+\newblock 2015.
+\newblock A neural conversational model.
+\newblock {\em arXiv preprint arXiv:1506.05869}.
+
+\bibitem[\protect\citeauthoryear{Yao, Zweig, and Peng}{2015}]{yao2015attention}
+Yao, K.; Zweig, G.; and Peng, B.
+\newblock 2015.
+\newblock Attention with intention for a neural network conversation model.
+\newblock {\em arXiv preprint arXiv:1510.08565}.
+
+\bibitem[\protect\citeauthoryear{Young \bgroup et al\mbox.\egroup
+  }{2013}]{young2013pomdp}
+Young, S.; Ga{\v{s}}i{\'c}, M.; Thomson, B.; and Williams, J.~D.
+\newblock 2013.
+\newblock Pomdp-based statistical spoken dialog systems: A review.
+\newblock {\em Proceedings of the IEEE} 101(5):1160--1179.
 
 \end{thebibliography}
