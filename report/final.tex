@@ -20,7 +20,7 @@
 /Title			
 /Author (AAAI Press Staff)}
 \setcounter{secnumdepth}{0}  
- \begin{document}
+\begin{document}
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
@@ -28,7 +28,7 @@
 \author{Nalin Chhibber\\ Student ID: 20715659, MMath CS(HCI)}
 \maketitle
 \begin{abstract}
-The primary aim of this paper is to describe popular techniques that researchers have been using to build voice user interfaces and cover a sizable body of literature related to the area. Additionally, this paper replicates the results by \cite{lowe2015ubuntu} for Unstructured Multi-Turn Dialogue Systems. Based on the findings, the paper also introduces a new conversational agent: nBot. nBot is trained on a limited dataset of manually constructed sentences and build witt combination of both retrieval-based and generative techniques. It uses Long Short Term Memory to remember the context of conversation.
+The primary aim of this paper is to describe popular techniques that researchers have been using to build conversational agents and cover a sizable body of literature related to the area. Additionally, this paper replicates the results by \cite{lowe2015ubuntu} for Unstructured Multi-Turn Dialogue Systems. Based on the findings, the paper also introduces a new conversational agent: nBot. nBot is trained on a limited dataset of manually constructed sentences and built with a combination of both retrieval-based and generative techniques. It uses Long Short Term Memory to remember the context of conversation.
 \end{abstract}
 
 \section{Introduction}
@@ -62,6 +62,52 @@ Batch learning generates the best predictor by learning on the entire training d
 
 \subsection{End-to-end vs Distributed Learning}
 Distributed learning systems require multiple stages of processing and follow a set pipeline for solving tasks at hand from feature extraction to learning the desired result. End-to-End learning on the other hand omits any hand-crafted intermediatery algorithms and directly learns the solution to a given problem from sampled dataset. This could involve concatenation of different neural networks(CNNs, RNNs) which are trained simultaneously. The idea is to let the network go from"raw-est" possible data to "final-most" output.
+
+\section{Related work}
+Typical dialogue systems consist of a Speech Recognizer, Language Interpreter, State Tracker, Response Generator, Natural Language Generator, and Speech Synthesizer. They can further be distinguished as goal driven systems, or non-goal driven systems. Initial work on goal driven dialogue systems primarily used rule-based systems with the distinction that machine learning techniques were used to classify the intention (or need) of the user, as well as to bridge the gap between text and speech\cite{serban2015survey}. Research in this area started to take off during the mid 90s, when researchers began to formulate dialogue as a sequential decision making problem based on Markov decision processes. \cite{young2013pomdp} \cite{singh2000reinforcement} \cite{pieraccini2009we}. With these systems, each of the components were trained separately to do its own task and the chatbot used to collectively use results from each to give the response. Later, with the improvements in deep learning algorithms, conversational models started using an end-to-end approach and use Neural Networks to predict the output of given input utterance. Though simple Feedforward Neural Networks with one hideen layer are regarded as universal function approximators, they are not well suited to remember timeseries data and thus cannot refer the information from past conversation. A Recurrent Neural Network (RNN) solves this problem by looping back part of the output back into the network, allowing information to persist. RNNs reads the input sentence, one token at a time, and predicts the output sequence, one token at a time. However, even RNNs are not too good in remembering long term dependencies and tend to forget the context if the gap between the relevant information and the point where it is needed to become very large. Long Short Term Memory networks or LSTM are special types of RNNs and they are capable of learning long-term dependencies \cite{Hochreiter:1997:LSM:1246443.1246450}. Besides the neural network itself, another thing that determines the performance of a conversational agent is the language model which gives the probability distribution over a sequences of words. This language model is based on the input to the neural network which involves elements of Natural Language Processing.\\\\
+Traditional NLP models typically use word as an atomic unit. However, words are discrete in nature and it seems nonsensical to feed word indexes to Neural Networks. A typical approach is to map a discrete word to a dense, low-dimensional, real-valued vector, called an embedding. A popular word embedding model is word2vec which uses a distributed representation of word to capture meaningful syntactic and semantic regularities \cite{mikolov2013efficient} \cite{mikolov2013distributed} \cite{mikolov2013linguistic}. In \cite{le2014distributed}, authors  extends the same idea to also compute distributed representations for sentences, paragraphs, and even entire documents. These vector representations are used in building the neural language model and help RNNs learn the context over time, given a word. We can choose how large these vectors should be(nBot uses vectors of size 300 dimensions). Both the embedded context and response are fed into the same Recurrent Neural Network word-by-word. The RNN generates a vector representation that, loosely speaking, captures the "meaning" of the context and response, and overtime learns to output the correct message. Word Embedding is typically done in the first layer of the Neural Network : Embedding layer, that maps a word (index to word in vocabulary) from vocabulary to a dense vector of given size. Alternatively, it is also possible to use a pre-trained word embeddings model with existing structure of Recurrent Neural Network.
+\\\\
+Some other deep Learning architectures like Sequence to Sequence\cite{sutskever2014sequence} are uniquely suited for generating text and researchers are hoping to make rapid progress in this area. Though nBot does not use sequence-to-sequence framework, it is important to document its relevance in this report given its performance and acceptability amongst AI researchers. Sequence-to-sequence framework consists of two RNNs (Recurrent Neural Network) : An Encoder and a Decoder. The encoder takes a sequence(sentence) as input and processes one symbol(word) at each timestep. Its objective is to convert a sequence of symbols into a fixed size feature vector that encodes only the important information in the sequence while losing the unnecessary information. \cite{vinyals2015neural} have used sequence-to-sequence framework to build a Neural Conversational Model. They trained their model on both a domain specific IT helpdesk dataset, and  a noisy open-domain movie transcript dataset. Sample conversations generated by the interaction between human actor and the NCM reports lower perplexity as compared to n-grams model and even outperforms CleverBot in a subjective test involving human evaluators to grade the two systems. However, as with any generative model, primary limitation of NCM is short and at times inconsistent responses. Moreover, the objective function of sequence-to-sequence framework is not designed to capture the objective of conversational models(thought the underlying architecture can be leveraged for machine translation, and question answering applications).
+\\\\
+Rest of this section is focused on discussing "The Ubuntu Dialogue Corpus" paper and replicating their results. Ubuntu Dialog Corpus is a dataset containing almost 1 million multi-turn dialogues, with a total of over 7 million utterances and 100 million words \cite{lowe2015ubuntu}. The dataset has both the multi-turn property of conversations in the Dialog State Tracking Challenge datasets, and the unstructured nature of interactions from microblog services such as Twitter. To justify the usefulness of proposed dataset for research in neural architectures for dialogue managers, authors provide a performance benchmarks for two neural learning algorithms(RNNs and LSTMs), as well as one naive baseline(TF-IDF). Prior to applying each method, they performed standard pre-processing of the data by tokenizing, stemmimg, and lemmatizing the utterances using NLTK. They also used generic tags for various word categories(like names, locations, organizations, urls). Additionally, authors set aside 2\% of the Ubuntu Dialogue Corpus conversations (randomly selected) to form a test set that can be used for evaluation of response selection algorithms. Compared to the rest of the corpus, this test set has been further processed to extract a pair of (context, response, flag) triples from each dialogue. The \textit{flag} is a Boolean variable indicating whether or not the response was the actual next utterance after the given context, \textit{response} is a target (output) utterance which we aim to correctly identify, and finally \textit{context} consists of the sequence of utterances appearing in dialogue prior to the response. In order to evaluate each of the three methods, authors used Recall@k metric. Here the agent is asked to select the k most likely responses, and test example is marked correct if the true response is among these k candidates. So a larger k means that the task becomes easier. If we set k=10 we get a recall of 100\% because we only have 10 responses to pick from. If we set k=1 the model has only one chance to pick the right response. For binary classification, only the Recall@1 metric is relevant. 
+
+\subsubsection{TF-IDF:}
+Term frequency-inverse document frequency is a statistic that intends to capture how important a given word is to some document, which in our case is the context [20]. It is a technique often used in document classification and information retrieval. The ‘term-frequency’ term is simply a count of the number of times a word appears in a given context, while the ‘inverse document frequency’ term puts a penalty on how often the word appears elsewhere in the corpus. The final score is calculated as the product of these two terms, and has the form: 
+$$
+tfidf(w,d,D) = f(w,d)* \log\frac{N}{|{d \in D:w \in d}|} 
+$$
+where f(w, d) indicates the number of times word w appeared in context d, N is the total number of dialogues, and the denominator represents the number of dialogues in which the word w appears. For classification, the TF-IDF vectors are first calculated for the context and each of the candidate responses. Given a set of candidate response vectors, the one with the highest cosine similarity to the context vector is selected as the output. For Recall@k, the top k responses are returned. 
+
+\subsubsection{RNNs:}
+Recurrent neural networks are a variant of neural networks that allows for time-delayed directed cycles between units [17]. This leads to the formation of an internal state of the network, $h_t$ , which allows it to model time-dependent data. The internal state is updated at each time step as some function of the observed variables $x_t$ , and the hidden state at the previous time step $h_{t-1}$. $W_x$ and $W_h$ are matrices associated with the input and hidden state.
+$$
+h_t = f(W_h W_{t-1} + W_x x_t)
+$$
+
+\subsubsection{LSTM:} 
+In addition to the RNN model, we consider the same architecture but changed the hidden units to long-short term memory (LSTM) units [12]. LSTMs were introduced in order to model longerterm dependencies. This is accomplished using a series of gates that determine whether a new input should be remembered, forgotten (and the old value retained), or used as output. The error signal can now be fed back indefinitely into the gates of the LSTM unit. This helps overcome the vanishing and exploding gradient problems in standard RNNs, where the error gradients would otherwise decrease or increase at an exponential rate. In training, we used 1 hidden layer with 200 neurons. The hyper-parameter configuration (including number of neurons) was optimized independently for RNNs and LSTMs using a validation set extracted from the training data.
+\\\\
+Table-1 illustrates perfomance for above three models based on Recall@k metric from original paper. Table-2 shows the replicated results for the same.
+\begin{center}
+	\begin{tabular}{ |c|c|c|c| } 
+		\hline
+		\textbf{Method} & \textbf{TF-IDF} & \textbf{RNN} & \textbf{LSTM} \\ \hline
+		Recall@1 & 41.0\%  & 40.3\% & 60.4\% \\ \hline
+		Recall@2 & 54.5\% & 54.7\% & 74.5\% \\ \hline
+		Recall@5 & 70.8\% & 81.9\% & 92.6\% \\ \hline
+		Recall@10 & 100\% & 100\% & 100\% \\ \hline
+	\end{tabular}
+\end{center}
+\begin{center}
+	\begin{tabular}{ |c|c|c|c| } 
+		\hline
+		\textbf{Method} & \textbf{Random} & \textbf{TF-IDF} & \textbf{LSTM} \\ \hline
+		Recall@1 & 9.3\%  & 49.5\% & 50.7\% \\ \hline
+		Recall@2 & 19.4\% & 59.7\% & 68.9\% \\ \hline
+		Recall@5 & 49.2\% & 76.6\% & 91.3\% \\ \hline
+		Recall@10 & 100\% & 100\% & 100\% \\ \hline
+	\end{tabular}
+\end{center}
 \section{Challenges}
 \subsection{Context Awareness}
 In real conversations, people don't start thinking from scratch every second to come come up with a new response. They build the conversation based on relevant concepts they might have discussed in past. Therefore, to produce sensible responses systems may need to incorporate both linguistic context and physical context. The most common approach is to embed the conversation into a vector, but doing that with long conversations is challenging in simple recurrent neural networks. Experiments by \cite{serban2016building} and \cite{yao2015attention} both go into that direction. Besides maintaining the context of topic, a smart conversational agent should also incorporate other kinds of contextual data such as date/time, location and information about a user.
@@ -89,31 +135,30 @@ For an effective research in dialog systems, corpus should have following qualit
 	\item Many conversations with several turns(more than 3).
 	\item Task-specific domain, as opposed to chatbot systems.
 \end{itemize}
-Most of these requirements are satisfied by the Ubuntu Dialogue Corpus introducted by \cite{lowe2015ubuntu}. Following section describes the related work in the development of conversational agents but focus specifically on \cite{lowe2015ubuntu}, and report replicated results using their technique.
-\section{Related work}
-Typical dialogue systems consist of a Speech Recognizer, Language Interpreter, State Tracker, Response Generator, Natural Language Generator, and Speech Synthesizer. They can further be distinguished as goal driven systems, or non-goal driven systems. Initial work on goal driven dialogue systems primarily used rule-based systems with the distinction that machine learning techniques were used to classify the intention (or need) of the user, as well as to bridge the gap between text and speech\cite{serban2015survey}. Research in this area started to take off during the mid 90s, when researchers began to formulate dialogue as a sequential decision making problem based on Markov decision processes. \cite{young2013pomdp} \cite{singh2000reinforcement} \cite{pieraccini2009we}. With these systems, each of the components were trained separately to do its own task and the chatbot used to collectively use results from each to give the response. Later, with the improvements in deep learning algorithms, conversational models started using an end-to-end approach and use Neural Networks to predict the output of given input utterance. Though simple Feedforward Neural Networks with one hideen layer are regarded as universal function approximators, they are not well suited to remember timeseries data and thus cannot refer the information from past conversation. A Recurrent Neural Network (RNN) solves this problem by looping back part of the output back into the network, allowing information to persist. RNNs reads the input sentence, one token at a time, and predicts the output sequence, one token at a time. However, even RNNs are not too good in remembering long term dependencies and tend to forget the context if the gap between the relevant information and the point where it is needed to become very large. Long Short Term Memory networks or LSTM are special types of RNNs and they are capable of learning long-term dependencies \cite{Hochreiter:1997:LSM:1246443.1246450}. Besides the neural network itself, another thing that determines the performance of a conversational agent is the language model which gives the probability distribution over a sequences of words. This language model is based on the input to the neural network which involves elements of Natural Language Processing.\\\\
-Traditional NLP models typically use word as an atomic unit. However, words are discrete in nature and it seems nonsensical to feed word indexes to Neural Networks. A typical approach is to map a discrete word to a dense, low-dimensional, real-valued vector, called an embedding. A popular word embedding model is word2vec which uses a distributed representation of word to capture meaningful syntactic and semantic regularities \cite{mikolov2013efficient} \cite{mikolov2013distributed} \cite{mikolov2013linguistic}. In \cite{le2014distributed}, authors  extends the same idea to also compute distributed representations for sentences, paragraphs, and even entire documents. These vector representations are used in building the neural language model and help RNNs learn the context over time, given a word. We can choose how large these vectors should be(nBot uses vectors of size 300 dimensions). Both the embedded context and response are fed into the same Recurrent Neural Network word-by-word. The RNN generates a vector representation that, loosely speaking, captures the "meaning" of the context and response, and overtime learns to output the correct message. Word Embedding is typically done in the first layer of the Neural Network : Embedding layer, that maps a word (index to word in vocabulary) from vocabulary to a dense vector of given size. Alternatively, it is also possible to use a pre-trained word embeddings model with existing structure of Recurrent Neural Network.
-\\\\
-Some other deep Learning architectures like Sequence to Sequence\cite{sutskever2014sequence} are uniquely suited for generating text and researchers are hoping to make rapid progress in this area. Though nBot does not use sequence-to-sequence framework, it is important to document its relevance in this report given its performance and acceptability amongst AI researchers. Sequence-to-sequence framework consists of two RNNs (Recurrent Neural Network) : An Encoder and a Decoder. The encoder takes a sequence(sentence) as input and processes one symbol(word) at each timestep. Its objective is to convert a sequence of symbols into a fixed size feature vector that encodes only the important information in the sequence while losing the unnecessary information. \cite{vinyals2015neural} have used sequence-to-sequence framework to build a Neural Conversational Model. They trained their model on both a domain specific IT helpdesk dataset, and  a noisy open-domain movie transcript dataset. Sample conversations generated by the interaction between human actor and the NCM reports lower perplexity as compared to n-grams model and even outperforms CleverBot in a subjective test involving human evaluators to grade the two systems. However, as with any generative model, primary limitation of NCM is short and at times inconsistent response. Moreover, the objective function of sequence-to-sequence framework is not designed to capture the objective of conversational models(thought the underlying architecture can be leveraged for machine translation, and question answering applications).
-\\\\
-The paper goes into detail on how exactly the corpus was created \cite{}.
+Most of these requirements are satisfied by the Ubuntu Dialogue Corpus introducted by \cite{lowe2015ubuntu}. Following section describes the implementation details of nBot: a simple conversational bot based on LSTM cells.
+
+related work in the development of conversational agents but focus specifically on \cite{lowe2015ubuntu}, and report replicated results using their technique.
 
 \section{Implementation}
-As mentioned earlier, 
-I have used a pre-trained word embeddings model from Associated Press News to train nBot. This model is 
+As mentioned earlier, nBot uses a pre-trained word embeddings model from Associated Press News to train nBot. This model is 
+
+We found that weight initialization as well as the choice of optimizer were critical for training the RNNs.
+
+Both the embedded context and response are fed into the same Recurrent Neural Network word-by-word.
 
 Input context(c) is multiplied with a matrix M to "predict" a response r'. Where input context(c) is a 300-dimensional vector, M is a 300×300 dimensional matrix, and the result is another 300-dimensional vector, which we can interpret as a generated response. The matrix M is learned during training.
 
+We measure the similarity of the predicted response r' and the actual response r by taking the dot product of these two vectors. A large dot product means the vectors are similar and that the response should receive a high score. We then apply a sigmoid function to convert that score into a probability.
+
+To train the network, we also need a loss (cost) function. We’ll use the binary cross-entropy loss common for classification problems.
 
 \begin{itemize}
 	\begin{tcolorbox}
-		\item For given dataset, find the best split(threshold) with following sub-steps
-		\item Partition the dataset based on best split(threshold) S
-		\item Recurssively call with subset that falls in first half of current dataset
-		\subitem Save the resultant tree to left branch of current node
-		\item Recurssively call with subset that falls in other half of current dataset
-		\subitem Save the resultant tree to right branch of current node
-		\item Return the current decision node
+		\item lorem ipsum
+		\item lorem ipsum
+		\item lorem ipsum
+		\item lorem ipsum
+		\item lorem ipsum
 	\end{tcolorbox}
 \end{itemize}
 
