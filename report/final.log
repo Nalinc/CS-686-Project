@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.12)  12 DEC 2017 04:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.12)  12 DEC 2017 21:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -502,13 +502,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--45
  []
 
 
-Underfull \hbox (badness 1057) in paragraph at lines 42--45
-\OT1/ptm/m/n/10 Rest of the pa-per de-scribes tax-on-omy of mod-els, ma-
+Underfull \hbox (badness 1558) in paragraph at lines 42--45
+\OT1/ptm/m/n/10 Rest of the pa-per de-scribes tax-on-omy of mod-els and
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 42--45
-\OT1/ptm/m/n/10 jor chal-lenges and re-lated work around the de-sign of
+Underfull \hbox (badness 1028) in paragraph at lines 42--45
+\OT1/ptm/m/n/10 re-lated work around the de-sign of con-ver-sa-tional bots.
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
@@ -645,6 +645,22 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
  [3]
+Underfull \hbox (badness 1342) in paragraph at lines 89--92
+ \OT1/ptm/b/n/10 LSTM: \OT1/ptm/m/n/10 In ad-di-tion to the RNN model, we con-s
+ider
+ []
+
+
+Underfull \hbox (badness 1117) in paragraph at lines 89--92
+\OT1/ptm/m/n/10 the same ar-chi-tec-ture but changed the hid-den units to
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 89--92
+\OT1/ptm/m/n/10 long-short term mem-ory (LSTM) units( Hochre-iter and
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 89--92
 
  []
@@ -664,8 +680,6 @@ Underfull \hbox (badness 1242) in paragraph at lines 89--92
 \OT1/ptm/m/n/10 9.3%, 19.4% and 49.2% for Re-call@1, Re-call@2 and
  []
 
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no — in font ptmr7t!
 
 Underfull \hbox (badness 3989) in paragraph at lines 124--130
 \OT1/ptm/m/n/10 kar-luah kar-luah kar-luah kleiser kleiser kleiser
@@ -677,21 +691,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--130
  []
 
 
-Underfull \hbox (badness 1057) in paragraph at lines 119--130
-\OT1/ptm/m/n/10 This model is trained on a Re-cur-rent Neu-ral Ne-towrk
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 119--130
+Underfull \hbox (badness 10000) in paragraph at lines 120--130
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 120--130
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--130
+
+ []
+
+[4]
 Underfull \hbox (badness 1199) in paragraph at lines 134--135
 \OT1/ptm/m/n/10 In real con-ver-sa-tions, peo-ple don't start think-ing from
  []
 
-[4]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
@@ -705,34 +723,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--150
 []\OT1/ptm/m/n/10 Cornell Movie-Dialogs Cor-pus: Con-tains a large
  []
 
-(./final.bbl [5]
-Underfull \hbox (badness 1132) in paragraph at lines 103--108
+(./final.bbl
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no “ in font ptmr7t!
+ [5]
+Underfull \hbox (badness 1132) in paragraph at lines 123--128
 \OT1/ptm/m/n/10 build-ing data-driven di-a-logue sys-tems.  \OT1/ptm/m/it/10 ar
 Xiv preprint
  []
 
-) [6
-
-] (./final.aux) ) 
+) [6] (./final.aux) ) 
 Here is how much of TeX's memory you used:
- 12688 strings out of 494953
- 250742 string characters out of 6180977
- 315368 words of memory out of 5000000
- 15745 multiletter control sequences out of 15000+600000
+ 12691 strings out of 494953
+ 250792 string characters out of 6180977
+ 315439 words of memory out of 5000000
+ 15748 multiletter control sequences out of 15000+600000
  16774 words of font info for 32 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  54i,11n,73p,2357b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time
-s/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final.pdf (6 pages, 153953 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
+}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on final.pdf (6 pages, 156628 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  49 compressed objects within 1 object stream

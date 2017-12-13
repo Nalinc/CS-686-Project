@@ -41,7 +41,7 @@ The primary aim of this paper is to describe popular techniques that researchers
 %\end{figure}
 As we are gradually incorporating technology in our lives, we are also trying to simplify the interaction technique by getting rid of unused mediums from the space of complicated interfaces. Taking the example of a simple phone, we started using them with rotary dials, then replaced those with numeric buttons and moved on to using touch screens. Voice user interaction is the next logical step and we have already started seeing a glimpse of it in Siri and Google Assistant. While most of the existing modes of human-computer interaction (touch/type/click) require users to adapt with the interface(screen/keyboard/mouse), voice user interfaces on the other hand, comes natural to humans and hence can be used as one of the most promising medium to engage them in a productive interaction. There has been a lot of optimism in the thought that near future will witness a rapid growth in human-computer-interaction using voice. This has not only led to an increased demand of conversational agents but also shown an increase in various chatbot development frameworks. Brands are increasingly using chatbots to engage their customers. Within just a couple years, we have seen a different evolution in the design of conversational agents from chatbots in Facebook Messenger, to Siri in iphones, to Microsoft's Cortana, Google Home and Amazon Alexa. While we cannot predict when Watson or Siri will start working like Jarvis, there is a still a lot that we can do with the normal scripted conversational agents.\\\\
 This paper has implemented a simple conversational agent, nBot using a combination of retrieval-based and generative models. It uses a recurrent neural network with 4 hidden layers of LSTM cells to understand the context and respond to user utterances. It has been trained on a limited dataset of manually constructed conversations over 5000 epochs.\\\\
-Rest of the paper describes taxonomy of models, major challenges and related work around the design of conversational bots.  It then details the implementation of nBot, followed by discussions on future work.
+Rest of the paper describes taxonomy of models and related work around the design of conversational bots.  It then details the implementation of nBot, followed by discussions on future work.
 
 \section{Taxonomy of models}
 %The term 'chatbot' covers a number of categories including stand-alone applications, AI tools, bot developer frameworks, messaging services, bot discovery, and analytics. This paper is mainly concerned with version that defines them as conversational agents.
@@ -73,20 +73,20 @@ Some other deep Learning architectures like Sequence to Sequence\cite{sutskever2
 Rest of this section is focused on discussing "The Ubuntu Dialogue Corpus" paper and replicating their results. Ubuntu Dialog Corpus is a dataset containing almost 1 million multi-turn dialogues, with a total of over 7 million utterances and 100 million words \cite{lowe2015ubuntu}. The dataset has both the multi-turn property of conversations in the Dialog State Tracking Challenge datasets, and the unstructured nature of interactions from microblog services such as Twitter. To justify the usefulness of proposed dataset for research in neural architectures for dialogue managers, authors provide a performance benchmarks for two neural learning algorithms(RNNs and LSTMs), as well as one naive baseline(TF-IDF). Prior to applying each method, they performed standard pre-processing of the data by tokenizing, stemmimg, and lemmatizing the utterances using NLTK. They also used generic tags for various word categories(like names, locations, organizations, urls). Additionally, authors set aside 2\% of the Ubuntu Dialogue Corpus conversations (randomly selected) to form a test set that can be used for evaluation of response selection algorithms. Compared to the rest of the corpus, this test set has been further processed to extract a pair of (context, response, flag) triples from each dialogue. The \textit{flag} is a Boolean variable indicating whether or not the response was the actual next utterance after the given context, \textit{response} is a target (output) utterance which we aim to correctly identify, and finally \textit{context} consists of the sequence of utterances appearing in dialogue prior to the response. In order to evaluate each of the three methods, authors used Recall@k metric. Here the agent is asked to select the k most likely responses, and test example is marked correct if the true response is among these k candidates. So a larger k means that the task becomes easier. If we set k=10 we get a recall of 100\% because we only have 10 responses to pick from. If we set k=1 the model has only one chance to pick the right response. For binary classification, only the Recall@1 metric is relevant. 
 
 \subsubsection{TF-IDF:}
-Term frequency-inverse document frequency is a statistic that intends to capture how important a given word is to some document, which in our case is the context [20]. It is a technique often used in document classification and information retrieval. The ‘term-frequency’ term is simply a count of the number of times a word appears in a given context, while the ‘inverse document frequency’ term puts a penalty on how often the word appears elsewhere in the corpus. The final score is calculated as the product of these two terms, and has the form: 
+Term frequency-inverse document frequency is a statistic that intends to capture how important a given word is to some document, which in our case is the context \cite{ramos2003using}. It is a technique often used in document classification and information retrieval. The ‘term-frequency’ term is simply a count of the number of times a word appears in a given context, while the ‘inverse document frequency’ term puts a penalty on how often the word appears elsewhere in the corpus. The final score is calculated as the product of these two terms, and has the form: 
 $$
 tfidf(w,d,D) = f(w,d)* \log\frac{N}{|{d \in D:w \in d}|} 
 $$
 where f(w, d) indicates the number of times word w appeared in context d, N is the total number of dialogues, and the denominator represents the number of dialogues in which the word w appears. For classification, the TF-IDF vectors are first calculated for the context and each of the candidate responses. Given a set of candidate response vectors, the one with the highest cosine similarity to the context vector is selected as the output. For Recall@k, the top k responses are returned. 
 
 \subsubsection{RNNs:}
-Recurrent neural networks are a variant of neural networks that allows for time-delayed directed cycles between units [17]. This leads to the formation of an internal state of the network, $h_t$ , which allows it to model time-dependent data. The internal state is updated at each time step as some function of the observed variables $x_t$ , and the hidden state at the previous time step $h_{t-1}$. $W_x$ and $W_h$ are matrices associated with the input and hidden state.
+Recurrent neural networks are a variant of neural networks that allows for time-delayed directed cycles between units\cite{medsker1999recurrent}. This leads to the formation of an internal state of the network, $h_t$ , which allows it to model time-dependent data. The internal state is updated at each time step as some function of the observed variables $x_t$ , and the hidden state at the previous time step $h_{t-1}$. $W_x$ and $W_h$ are matrices associated with the input and hidden state.
 $$
 h_t = f(W_h W_{t-1} + W_x x_t)
 $$
 
 \subsubsection{LSTM:} 
-In addition to the RNN model, we consider the same architecture but changed the hidden units to long-short term memory (LSTM) units [12]. LSTMs were introduced in order to model longerterm dependencies. This is accomplished using a series of gates that determine whether a new input should be remembered, forgotten (and the old value retained), or used as output. The error signal can now be fed back indefinitely into the gates of the LSTM unit. This helps overcome the vanishing and exploding gradient problems in standard RNNs, where the error gradients would otherwise decrease or increase at an exponential rate. In training, we used 1 hidden layer with 200 neurons. The hyper-parameter configuration (including number of neurons) was optimized independently for RNNs and LSTMs using a validation set extracted from the training data.
+In addition to the RNN model, we consider the same architecture but changed the hidden units to long-short term memory (LSTM) units\cite{hochreiter1997long}. LSTMs were introduced in order to model longerterm dependencies. This is accomplished using a series of gates that determine whether a new input should be remembered, forgotten (and the old value retained), or used as output. The error signal can now be fed back indefinitely into the gates of the LSTM unit. This helps overcome the vanishing and exploding gradient problems in standard RNNs, where the error gradients would otherwise decrease or increase at an exponential rate. In training, we used 1 hidden layer with 200 neurons. The hyper-parameter configuration (including number of neurons) was optimized independently for RNNs and LSTMs using a validation set extracted from the training data.
 \\\\
 Following tables illustrate the perfomance for above three models based on Recall@k metric from original paper and replicated results wrt TF-IDF and LSTM. For comparison, completely random predictor got a score of 9.3\%, 19.4\% and 49.2\% for Recall@1, Recall@2 and Recall@5 respectively.
 \begin{center}
@@ -103,23 +103,23 @@ Following tables illustrate the perfomance for above three models based on Recal
 	\begin{tabular}{ |c|c|c| } 
 		\hline
 		\textbf{Method} & \textbf{TF-IDF} & \textbf{LSTM} \\ \hline
-		Recall@1 & 49.5\% & 50.7\% \\ \hline
-		Recall@2 & 59.7\% & 68.9\% \\ \hline
-		Recall@5 & 76.6\% & 91.3\% \\ \hline
+		Recall@1 & 49.5\% & 49.84\% \\ \hline
+		Recall@2 & 59.7\% & 68.74\% \\ \hline
+		Recall@5 & 76.6\% & 91.44\% \\ \hline
 	\end{tabular}
-	\captionof{table}{Results for the three algorithms using various recall measures}
+	\captionof{table}{Replicated results for the three algorithms using various recall measures after 2440 steps}
 \end{center}
 The replicated model gives following response after training. Spelling mistakes are due to the quality of the corpus.
 \begin{tcolorbox}
      \textbf{[Context]} be i abl to use dhcpd toissu dhcp to all subnet except the one it be in ? \_\_eou\_\_ \_\_eot\_\_ great question ! sound implaus but i ll check \_\_eou\_\_ \_\_eot\_\_ thank . i ve be read the configur guid and ca n't find if i can or not . i could off cours tri . \_\_eou\_\_ \_\_eot\_\_ the way i read it , for a multi-hom server , it ll onli server sub-net for which there be a subnet { } claus in the config \_\_eou\_\_ \_\_eot\_\_ \\
      \textbf{[Answer]} so i would put a shared-network group with the subnet i want in there , exclud the one it be attach to ? \_\_eou\_\_
 \end{tcolorbox}
+The AI and Deep learning blog by \cite{DENNYBRITZ} helped a lot while replicating the results of original authors. Inside the recurrent neural network, input context(c) is multiplied with a matrix M to "predict" a response r'. Input context(c) is a 300-dimensional vector, M is a 300*300 dimensional matrix, and the result is another 300-dimensional vector, which can be interpreted as a generated response. The matrix M is learned during training. I measured the similarity of the predicted response r' and the actual response r by taking the dot product of these two vectors. A large dot product means the vectors are similar and that the response should receive a high score. I then applied a sigmoid function to convert that score into a probability.
 
 \section{Implementation}
-As mentioned earlier, nBot uses a pre-trained word embeddings model from Associated Press News for training. This model is trained on a Recurrent Neural Netowrk consisting of 4 hidden layers with LSTM cells each having an output dimension of 300. Both the embedded context and response are fed into the same Recurrent Neural Network word-by-word. Inside the recurrent neural network, input context(c) is multiplied with a matrix M to "predict" a response r'. In nBot, input context(c) is a 300-dimensional vector, M is a 300×300 dimensional matrix, and the result is another 300-dimensional vector, which we can be interpreted as a generated response. The matrix M is learned during training. We measure the similarity of the predicted response r' and the actual response r by taking the dot product of these two vectors. A large dot product means the vectors are similar and that the response should receive a high score. We then apply a sigmoid function to convert that score into a probability. Weight initialization as well as the choice of optimizer were critical for training the RNNs. We have used "adam optimizer" with "cosine proximity" as the loss/cost function. Further, the model has used "glorot normal" initializer to set the initial random weights of Keras layers. This implementation is built on top of keras with tensorflow backend.
+As mentioned earlier, nBot uses a pre-trained word embeddings model from Associated Press News for training. This model is trained on keras using tensorflow as a backend. It uses a Recurrent Neural Network consisting of 4 hidden layers with LSTM cells each having an output dimension of 300. In order to train the neural network, it is important that the input is compatible with the hidden layers. For this, I did a preprocessing on input data where I created two lists for input queries and output responses. Every sentence was clipped to 15 words and each word was represented as a word vector of length 300. For every word in the corpus, I tried to find a vector for it from the pretrained word2vec model which effectively modeled a sentence to be a vector of word-vectors. This vector of word vectors is eventually fed to the recurent neural network. Weight initialization as well as the choice of optimizer are critical for training the RNNs. I have used "adam optimizer" with "cosine proximity" as the loss/cost function. Further, the model has used "glorot normal" initializer to set the initial random weights of Keras layers. This implementation is build on top of keras with tensorflow backend.
 \\\\
-fixed input size issue.
-Following is the sample conversation generated by nBot after training for 5000 epochs. These alien words are due to the presence of padding elements in input.
+One catch with using Neural Networks is that they can only be applied to problems where inputs and outputs can sensibly be encoded with vectors of fixed dimensionality. Therefore, I padded . Following is the sample conversation generated by nBot after training for 5000 epochs. These alien words are due to the presence of padding elements in input.\\\\
 	\begin{tcolorbox}
 	\textbf{User:}hi \\
 	\textbf{nBot:}how are you doing ? kleiser kleiser karluah karluah karluah kleiser kleiser kleiser kleiser kleiser \\
@@ -128,7 +128,7 @@ Following is the sample conversation generated by nBot after training for 5000 e
 	\textbf{User:} Who are you?\\
 	\textbf{nBot:} what ? who is but a form following the function of what kleiser kleiser karluah\\
 	\end{tcolorbox}
-
+Though nBot is a functional conversational agent, it is still pretty naive in handling existing utterances and gives glibberish on receiving unknown/new inputs. 
 \section{Discussion}
 \subsection{Context Awareness}
 In real conversations, people don't start thinking from scratch every second to come come up with a new response. They build the conversation based on relevant concepts they might have discussed in past. Therefore, to produce sensible responses systems may need to incorporate both linguistic context and physical context. The most common approach is to embed the conversation into a vector, but doing that with long conversations is challenging in simple recurrent neural networks. Experiments by \cite{serban2016building} and \cite{yao2015attention} both go into that direction. Besides maintaining the context of topic, a smart conversational agent should also incorporate other kinds of contextual data such as date/time, location and information about a user.
@@ -156,11 +156,20 @@ For an effective research in dialog systems, corpus should have following qualit
 	\item Many conversations with several turns(more than 3).
 	\item Task-specific domain, as opposed to chatbot systems.
 \end{itemize}
-Most of these requirements are satisfied by the Ubuntu Dialogue Corpus introducted by \cite{lowe2015ubuntu}.
+Most of these requirements are satisfied by the Ubuntu Dialogue Corpus introducted by \cite{lowe2015ubuntu}. However, the dataset is not specifically made to train a conversational agent therefore I came up with a manual corpus based on general conversational dialogs. I am hoping to get better results after training nBot on a bigger and feature rich corpus(cornel movie dataset) in future.
+
+\section{Limitations}
+
+Current model has naively assumed that a speech-to-text recogniser can be bolted in front of the system in order to build a voice-driven assistant. However, the distribution of utterances changes dramatically according to the nature of the interaction. 
 
 
 \bibliographystyle{aaai}
 \bibliography{ta}
 
+\section{Appendix}
+\begin{itemize}
+	\item Code for nBot: 
+	\item Replicated results:
+\end{itemize}
 \end{document}
 

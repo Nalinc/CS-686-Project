@@ -1,5 +1,12 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Britz}{2016}]{DENNYBRITZ}
+Britz, D.
+\newblock 2016.
+\newblock Deep learning for chatbots, part 2 – implementing a retrieval-based
+  model in tensorflow.
+\newblock Accessed: 2017-12-9.
+
 \bibitem[\protect\citeauthoryear{Hochreiter and
   Schmidhuber}{1997a}]{Hochreiter:1997:LSM:1246443.1246450}
 Hochreiter, S., and Schmidhuber, J.
@@ -60,6 +67,12 @@ Lowe, R.; Pow, N.; Serban, I.; and Pineau, J.
   unstructured multi-turn dialogue systems.
 \newblock {\em arXiv preprint arXiv:1506.08909}.
 
+\bibitem[\protect\citeauthoryear{Medsker and Jain}{1999}]{medsker1999recurrent}
+Medsker, L., and Jain, L.~C.
+\newblock 1999.
+\newblock {\em Recurrent neural networks: design and applications}.
+\newblock CRC press.
+
 \bibitem[\protect\citeauthoryear{Mikolov \bgroup et al\mbox.\egroup
   }{2013a}]{mikolov2013efficient}
 Mikolov, T.; Chen, K.; Corrado, G.; and Dean, J.
@@ -97,6 +110,13 @@ Pieraccini, R.; Suendermann, D.; Dayanidhi, K.; and Liscombe, J.
 \newblock Are we there yet? research in commercial spoken dialog systems.
 \newblock In {\em Text, Speech and Dialogue},  3--13.
 \newblock Springer.
+
+\bibitem[\protect\citeauthoryear{Ramos and others}{2003}]{ramos2003using}
+Ramos, J., et~al.
+\newblock 2003.
+\newblock Using tf-idf to determine word relevance in document queries.
+\newblock In {\em Proceedings of the first instructional conference on machine
+  learning}, volume 242,  133--142.
 
 \bibitem[\protect\citeauthoryear{Serban \bgroup et al\mbox.\egroup
   }{2015}]{serban2015survey}
