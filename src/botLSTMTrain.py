@@ -7,6 +7,7 @@ import gensim
 from keras.layers.recurrent import LSTM,SimpleRNN
 from keras.models import load_model
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 # import theano
 # theano.config.optimizer="None"
 
@@ -46,7 +47,34 @@ x_train,x_test, y_train,y_test = train_test_split(vec_x, vec_y, test_size=0.2, r
 # model.fit(x_train, y_train, nb_epoch=500,validation_data=(x_test, y_test))
 # model.save('LSTM5000.h5');
 
-model = load_model('LSTM500.h5')
+model = load_model('LSTM4500.h5')
+
+history = model.fit(x_train, y_train, nb_epoch=500,validation_data=(x_test, y_test))
+model.save('LSTM5000_new.h5')
+
+font = {'family' : 'normal',
+        'weight' : 'bold',
+        'size'   : 22}
+
+matplotlib.rc('font', **font)
+print(history.history.keys())
+
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+
 
 predictions=model.predict(x_test) 
 #os.chdir("/home/nc/corpus/apnews_sg")
